@@ -1,5 +1,6 @@
 package tax
 
+// run go test -v
 // run go test -coverprofile=coverage.out
 // run go tool cover -html=coverage.out
 
@@ -31,5 +32,19 @@ func TestCalculateTaxBatch(t *testing.T) {
 		if result != item.expect {
 			t.Errorf("Expected %f, but got %f", item.expect, result)
 		}
+	}
+}
+
+// run go test -bench=. -run=^# -benchmem -count=10 -benchtime=3s
+
+func BenchmarkCalculateTax(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		CalculateTax(500.0)
+	}
+}
+
+func BenchmarkCalculateTax2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		CalculateTax2(500.0)
 	}
 }
