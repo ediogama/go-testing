@@ -1,5 +1,8 @@
 package tax
 
+// run go test -coverprofile=coverage.out
+// run go tool cover -html=coverage.out
+
 import "testing"
 
 func TestCalculateTax(t *testing.T) {
@@ -21,6 +24,7 @@ func TestCalculateTaxBatch(t *testing.T) {
 		{500.0, 5.0},
 		{1000.0, 10.0},
 		{1500.0, 10.0},
+		{0.0, 0.0},
 	}
 	for _, item := range table {
 		result := CalculateTax(item.amount)
